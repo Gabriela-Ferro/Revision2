@@ -1,41 +1,47 @@
-var formulario = document.querySelector("#form")
+const formulario = document.querySelector('.formulario') //cambie var por const, y llame a la clase correcta con el .
+//tambien cambie por comillas simples
 
 formulario.onsubmit = function(e) {
 
-  e.prevent();
+  e.preventDefault ();
   
-  var n = formulario.elements[0]
-  var e = formulario.elements[1]
-  var na = formulario.elements[2]
+  const namePosition = formulario.elements[0];
+  const agePosition = formulario.elements[1];
+  const  nacionalityPosition = formulario.elements[2];
 
-  var nombre = n.value
-  var edad = e.value
+  const nombre = namePosition.value;
+  const edad = agePosition.value;
+  let indexNacionalidad = nacionalityPosition.selectedIndex;
+  const valorNacionalidad = indexNacionalidad.options[i].value;
+  console.log(nombre, edad);
+  console.log(nacionalidad);
 
-  var i = na.selectedIndex
-  var nacionalidad = na.options[i].value
-  console.log(nombre, edad)
-  console.log(nacionalidad)
+  /**en lo anterior modifique las variables que tenian nombres poco descriptivos, 
+   * utilice elemnto + Position para designar la posicion dentro del arreglo, y el nombre de  los
+   * elementos para asignaban el valor. Ademas aniadi ; y cambie el var
+   */
 
   if (nombre.length === 0) {
-    n.classList.add("error")
+    namePosition.classList.add("error");
   }
   if (edad < 18 || edad > 120) {
-    e.classList.add("error")
+    agePosition.classList.add("error");
   }
 
-if (nombre.length > 0 
-  && (edad > 18 
-    && edad < 120) ) {
-  agregarInvitado(nombre, edad, nacionalidad)
+if (nombre.length > 0 && (edad >= 18 && edad <= 120) ) {
+  agregarInvitado(nombre, edad, nacionalidad);
   }
 }
-
-var botonBorrar = document.createElement("button")
+/**  cambie las variables por los nombres correctos asignados anteriormente, ademas aniadi
+ * ; y ordene mejor el if de la linea 32 proque era poco legible.
+*/
+const botonBorrar = document.createElement("button");
 botonBorrar.textContent = "Eliminar invitado"
 botonBorrar.id = "boton-borrar"
-var corteLinea = document.createElement("br")
-document.body.appendChild(corteLinea)
+document.body.appendChild(document.createElement("br"));
 document.body.appendChild(botonBorrar);
+
+/**Aqui me parece que flatan parentesis y estaba incompleyo.  */
 
 function agregarInvitado(nombre, edad, nacionalidad) {
 
@@ -52,7 +58,7 @@ function agregarInvitado(nombre, edad, nacionalidad) {
     nacionalidad = "Peruana"
   }
 
-var lista = document.getElementById("lista-de-invitados")
+let lista = document.getElementById("lista-de-invitados")
 
 var elementoLista = document.createElement("div")
 elementoLista.classList.added("elemento-lista")
